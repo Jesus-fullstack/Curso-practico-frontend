@@ -19,6 +19,7 @@
     nav {
         display: flex;
         justify-content: space-between;
+        width: auto;
         padding: 0 24px;
         border-bottom: solid 1px var(--very-ligth-pink);
     }
@@ -97,6 +98,8 @@
         flex-direction: column;
         position: absolute;
         top: 60px;
+        left: 0;
+        width: calc(100% - 50px);
         height: inherit;
         border: solid 1px var(--very-ligth-pink);
         border-radius: 0 0 8px 8px;
@@ -175,14 +178,19 @@
     }
 
     /* Aside (product-detail y carrito de compras)*/
-    .product-detail {
+
+    aside {
         box-sizing: border-box;
         width: 360px;
-        padding: 0 24px 24px 24px;
         position: absolute;
-        right: 0;
+        right: 0px;
+        padding-bottom: 24px;
         background-color: var(--white);
         transition: 0.5s;
+    }
+      /* Estos son del shopping cart */
+    #shoppingCartContainer {
+    padding: 0 24px 24px 24px;
     }
     .title-container {
         display: flex;
@@ -257,6 +265,70 @@
         height: 50px;
     }
 
+    /*Estos son los del product-detail*/
+    .product-detail-close {
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        width: 14px;
+        height: 14px;
+        padding: 12px;
+        border-radius: 50%;
+        background-color: var(--white);
+        z-index: 2;
+    }
+    .product-detail-close:hover {
+        cursor: pointer;
+    }
+
+    #productDetail img:nth-child(2) {
+        width: 100%;
+        height: 360px;
+        border-radius: 0 0 20px 20px;
+        object-fit: cover;
+    }
+    .dots {
+        text-align: center;
+    }
+    .dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin: 0 2px;
+        border-radius: 50%;
+        background-color: var(--very-ligth-pink);
+        cursor: pointer;
+    }
+    .dots span:nth-child(1) {
+    background-color: var(--hospital-green);
+    }
+    #productDetail .product-info {
+        margin: 24px 24px 0 24px;
+    }
+    #productDetail .product-info p:nth-child(1) {
+        margin-top: 0;
+        margin-bottom: 4px;
+        font-size: var(--md);
+        font-weight: bold;
+    }
+    #productDetail .product-info p:nth-child(2) {
+        margin-top: 0;
+        margin-bottom: 36px;
+        font-size: var(--md);
+        color: var(--very-ligth-pink);
+    }
+    #productDetail .product-info p:nth-child(2) {
+        margin-top: 0;
+        margin-bottom: 36px;
+        font-size: var(--sm);
+        color: var(--very-ligth-pink);
+    }
+    .add-to-cart-button {
+        display: flex;
+        justify-content:center;
+        align-items: center;
+    }
+
     /*Product list */
     .cards-container {
         display: grid;
@@ -274,28 +346,28 @@
         border-radius: 20px;
         object-fit: cover;
     }
-    .product-info {
+    .product-card .product-info {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-top: 12px;
     }
-    .product-info div p:nth-child(1) {
+    .product-card .product-info div p:nth-child(1) {
         margin-top: 0px;
         margin-bottom: 4px;
         font-size: var(--md);
         font-weight: bold;
     }
-    .product-info div p:nth-child(2) {
+    .product-card .product-info div p:nth-child(2) {
         margin-top: 0px;
         margin-bottom: 0px;
         font-size: var(--sm);
         color: var(--very-ligth-pink);
     }
-    .product-info figure {
+    .product-card .product-info figure {
         margin: 0px;
     }
-    .product-info figure img {
+    .product-card .product-info figure img {
         width: 35px;
         height: 35px;
     }
@@ -303,13 +375,19 @@
     /*Estilos de interactividad*/
     .inactive {
         opacity : 0;
+        visibility: hidden;
+    }
+    .none {
+       display:none;
     }
     .active {
         color:var(--hospital-green);
         fill: var(--hospital-green);
         stroke: var(--hospital-green);
     }
-
+    .cursor {
+        cursor: pointer;
+    }
 
     @media (max-width: 640px) { 
         .menu {
@@ -324,8 +402,11 @@
         .desktop-menu {
             display: none;
         }
-        .product-detail {
+        aside {
             width: 100%;
+        }
+        aside#productDetail {
+            padding: 0 24px 24px 24px;
         }
         .cards-container {
             display: grid;

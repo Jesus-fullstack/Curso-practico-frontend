@@ -4,23 +4,28 @@ const menuEmailArrow = document.querySelector('.nabvar-email svg path')
 const shoopingCartIcon = document.querySelector('.navbar-shopping-car')
 const mobileMenu = document.querySelector('.mobile-menu');
 const desktopMenu = document.querySelector('.desktop-menu');
-const shoopingCart = document.querySelector('.product-detail');
-const cardsContainer = document.querySelector('.cards-container')
+const shoppingCartContainer = document.querySelector('#shoppingCartContainer');
+const cardsContainer = document.querySelector('.cards-container');
+const productDetailContainer = document.querySelector('#productDetail');
+const productDetailContainerCloseIcon = document.querySelector('.product-detail-close');
 
 mobileMenuIcon.addEventListener('click', toggleMobileMenu);
 menuEmail.addEventListener('click', toggleDesktopMenu);
 shoopingCartIcon.addEventListener('click', toggleShoopingCart);
+productDetailContainerCloseIcon.addEventListener('click', closeProductDetailAside);
 
 function toggleMobileMenu() {
     mobileMenu.classList.toggle("inactive");
-    shoopingCart.classList.add("inactive");
+    shoppingCartContainer.classList.add("inactive");
+    productDetailContainer.classList.add("inactive");
 }
 
 function toggleDesktopMenu() {
     menuEmail.classList.toggle("active");
     menuEmailArrow.classList.toggle("active");
     desktopMenu.classList.toggle("inactive");
-    shoopingCart.classList.add("inactive");
+    shoppingCartContainer.classList.add("inactive");
+    productDetailContainer.classList.add("inactive");
 }
 
 function toggleShoopingCart() {
@@ -28,7 +33,20 @@ function toggleShoopingCart() {
     menuEmail.classList.remove("active");
     menuEmailArrow.classList.remove("active");
     desktopMenu.classList.add("inactive");
-    shoopingCart.classList.toggle("inactive");
+    shoppingCartContainer.classList.toggle("inactive");
+    productDetailContainer.classList.add("inactive");
+}
+
+function openProductDetailAside() {
+    productDetailContainer.classList.remove('inactive')
+    mobileMenu.classList.add("inactive");
+    menuEmail.classList.remove("active");
+    menuEmailArrow.classList.remove("active");
+    desktopMenu.classList.add("inactive");
+    shoppingCartContainer.classList.add("inactive");
+}
+function closeProductDetailAside() {
+    productDetailContainer.classList.add('inactive')
 }
 
 const productList = [];
@@ -82,9 +100,10 @@ function renderProducts(arr) {
     
         productCard.append(imgElement);
         productCard.append(productInfo);
-    
         cardsContainer.append(productCard);
-    
+        productCard.classList.add('cursor');
+        productCard.addEventListener('click',openProductDetailAside);
+
     }
 }
 renderProducts(productList);
